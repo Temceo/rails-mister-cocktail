@@ -1,7 +1,38 @@
-<h1>All cocktails</h1>
 
-<% @cocktails.each do |cocktail| %>
-  <ul>
-    <li> <%= cocktail.name %></li>
-  </ul>
-<% end %>
+<style>
+  .container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 960px;
+    margin: 10px auto;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .card-body {
+    background-color: #DBD9D8;
+   
+  }
+  
+</style>
+
+<section class="container">
+ <% @cocktails.each do |cocktail| %>
+  <div class="card col-lg-12 col-sm-6 mx-auto" style="width: 18rem;">
+    <img src="https://source.unsplash.com/200x200/?cocktails/" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= cocktail.name %></h5>
+      <%= link_to "Cocktail Details", cocktail_path(cocktail), class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+</section>
+
+  
+
+
+
+
