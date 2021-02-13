@@ -1,0 +1,19 @@
+<style>
+  ul {
+  list-style: none;
+  }
+</style>
+<h1>Reviews for <%= link_to @cocktail.name, @cocktail %></h1>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <%= pluralize(review.rating, 'star') %>:
+      <%= render "shared/stars", percent: review.stars_as_percent %>
+      <%= review.comment %>
+      <p>
+        <%= time_ago_in_words(review.created_at) %> ago
+      </p>
+      <hr>
+    </li>
+  <% end %>
+</ul>

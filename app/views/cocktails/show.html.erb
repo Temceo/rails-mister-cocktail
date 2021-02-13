@@ -1,3 +1,11 @@
+<style>
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+</style>
+<br>
 <div class="container">
   <div class="row">
 
@@ -31,6 +39,20 @@
     </div>
   </div>
   <%= link_to  "Add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary btn-lg" %> 
-  <%= link_to "All cocktails", root_path, class: "btn btn-primary btn-lg" %>
-
-
+  <%= link_to "Leave review", new_cocktail_review_path(@cocktail), class: "btn btn-primary btn-lg" %>
+<section>
+  <br>
+  <ul>
+  <h1>Reviews for <%= @cocktail.name %></h1>
+    <% @cocktail.reviews.each do |review| %>
+      <li>
+        <%= pluralize(review.rating, 'star') %>:
+        <%= render "shared/stars", percent: review.stars_as_percent %>
+        <%= review.comment %>
+        <p>
+          <%= time_ago_in_words(review.created_at) %> ago
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</section>
